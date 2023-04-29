@@ -29,24 +29,31 @@ public class UserController {
 		return userService.getAllUsers();
 	}
 
-	@GetMapping("/user/{id}")
+	@GetMapping("/{id}")
 	public User getUser(@PathVariable Long id) {
 		return userService.getUser(id);
 	}
 
-	@DeleteMapping("/user/{id}")
+	@DeleteMapping("/{id}")
+	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void deleteUser(@PathVariable Long id) {
 		userService.deleteUser(id);
+	}
+	
+	@DeleteMapping
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	public void deleteAllUser() {
+		userService.deleteAllUsers();
 	}
 
 	@PostMapping
 	@ResponseStatus(code = HttpStatus.CREATED)
-	public void createUser(@RequestBody User user) {
-		userService.createUser(user);
+	public User createUser(@RequestBody User user) {
+		return userService.createUser(user);
 	}
 
-	@PutMapping("/user/{id}")
-	public void updateUser(@PathVariable Long id, @RequestBody User user) {
-		userService.updateUser(id, user);
+	@PutMapping("/{id}")
+	public User updateUser(@PathVariable Long id, @RequestBody User user) {
+		return userService.updateUser(id, user);
 	}
 }
