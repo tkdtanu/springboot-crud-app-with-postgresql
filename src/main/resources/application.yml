@@ -1,0 +1,23 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /user-app
+spring:
+  application:
+    name: SpringBootUserCRUDAppWithPostgress
+  datasource: 
+    url: jdbc:postgresql://${POSTGRES_IP:192.168.1.5}:5432/testdb
+    username: postgres
+    password: mysecretpassword
+  jpa: 
+    show-sql: true
+    database-platform: POSTGRESQL
+    properties:
+      hibernate:
+       dialect: org.hibernate.dialect.PostgreSQLDialect
+logging:
+  level:
+    org.flywaydb: DEBUG
+    org.springframework.beans.factory.support.DefaultListableBeanFactory: DEBUG
+    org.springframework: DEBUG
+      
